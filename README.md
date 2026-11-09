@@ -54,3 +54,65 @@ docker run -p 3000:3000 tareas-devops
 - Análisis estático real (ESLint) y umbral de cobertura mínima.
 - Monitoreo: usar `/metrics` y los logs JSON; definir al menos una **alerta** (ej. errores > 0).
 - Documentar: guía de instalación, manual de operaciones y lecciones aprendidas.
+
+
+
+
+## Implementación de la Práctica 3
+
+**Estudiante:** Jeffrey Mercado  
+**Matrícula:** 2022-0443  
+**Sección:** TDS-015
+
+### Funcionalidad implementada
+
+Se agregó el endpoint DELETE /api/tareas/:id para eliminar
+tareas existentes. Si el identificador no existe, devuelve
+el código HTTP 404.
+
+### Pruebas automatizadas
+
+La plantilla incluía seis pruebas originales. Se agregaron
+dos pruebas nuevas para verificar:
+
+1. La eliminación correcta de una tarea.
+2. La respuesta HTTP 404 al eliminar una tarea inexistente.
+
+Resultado: 8 pruebas exitosas y 93.61 % de cobertura
+de líneas en la ejecución local.
+
+### Etapas del pipeline CI/CD
+
+1. Checkout: descarga el código del repositorio de GitHub.
+
+2. Instalación: prepara Node.js e instala las dependencias
+   necesarias para ejecutar el proyecto.
+
+3. Pruebas: ejecuta Jest para comprobar el funcionamiento
+   de la API y obtener un reporte de cobertura.
+
+4. Construcción: verifica que el proyecto pueda
+   construirse como imagen Docker.
+
+5. Despliegue: publica el frontend estático mediante
+   GitHub Pages cuando las etapas anteriores terminan
+   correctamente.
+
+### Problema encontrado y solución
+
+La primera ejecución del pipeline falló porque GitHub
+Pages todavía no estaba habilitado.
+
+Se corrigió desde Settings > Pages, seleccionando
+GitHub Actions como fuente de publicación.
+
+Después de repetir el pipeline, las etapas de construcción,
+pruebas y despliegue finalizaron correctamente.
+
+### Enlaces del proyecto
+
+Repositorio:
+https://github.com/Jeffrey29600/practica3-cicd-devops
+
+Aplicación publicada:
+https://jeffrey29600.github.io/practica3-cicd-devops/
